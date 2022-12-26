@@ -1,0 +1,372 @@
+boot-repair-4ppa203                                              [20221226_1452]
+
+============================= Boot Repair Summary ==============================
+
+
+
+
+
+This will modify the mount point of sdb1 in order to remove spaces and special characters. Do you want to continue?
+This will modify the mount point of sdb1 in order to remove spaces and special characters. Do you want to continue?
+
+Recommended repair: ____________________________________________________________
+
+The default repair of the Boot-Repair utility will reinstall the grub-efi of
+nvme0n1p5,
+using the following options:  nvme0n1p1/boot/efi
+Additional repair will be performed: unhide-bootmenu-10s use-standard-efi-file restore-efi-backups
+
+
+rm /mnt/boot-sav/nvme0n1p1/efi/Boot/bootx64.efi
+mv /mnt/boot-sav/nvme0n1p1/efi/Boot/bkpbootx64.efi /mnt/boot-sav/nvme0n1p1/efi/Boot/bootx64.efi
+Could not detect USEDPERCENT of nvme0n1p3 ().
+/dev/nvme0n1p3 264596212 -182262548 446858760    - /mnt/boot-sav/nvme0n1p3
+
+Mount nvme0n1p1 on /mnt/boot-sav/nvme0n1p5/boot/efi
+
+===================== Reinstall the grub-efi of nvme0n1p5 ======================
+
+chroot /mnt/boot-sav/nvme0n1p5 grub-install --version
+grub-install (GRUB) 2.06-2ubuntu7
+chroot /mnt/boot-sav/nvme0n1p5 modprobe efivars
+
+chroot /mnt/boot-sav/nvme0n1p5 efibootmgr -v before grub install
+BootCurrent: 0017
+Timeout: 0 seconds
+BootOrder: 0017,0000,0013,0014,0015,0016,0018,0019
+Boot0000* Windows Boot Manager	HD(1,GPT,80ffcdb8-7774-4451-878c-6e620adc338c,0x800,0x82000)/File(EFIMicrosoftBootbootmgfw.efi)WINDOWS.........x...B.C.D.O.B.J.E.C.T.=.{.9.d.e.a.8.6.2.c.-.5.c.d.d.-.4.e.7.0.-.a.c.c.1.-.f.3.2.b.3.4.4.d.4.7.9.5.}....................
+Boot0010  Setup	FvFile(721c8b66-426c-4e86-8e99-3457c46ab0b9)
+Boot0011  Boot Menu	FvFile(86488440-41bb-42c7-93ac-450fbf7766bf)
+Boot0012  UEFI Diagnostics	FvFile(f8397897-e203-4a62-b977-9e7e5d94d91b)
+Boot0013* NVMe: SAMSUNG MZALQ512HALU-000L2             	PciRoot(0x0)/Pci(0x2,0x4)/Pci(0x0,0x0)/NVMe(0x1,00-25-38-AB-01-D9-C2-F8)....2.LN........
+Boot0014* ATA HDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,91af625956449f41a7b91f4f892ab0f600)
+Boot0015* ATA HDD1:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,91af625956449f41a7b91f4f892ab0f601)
+Boot0016* ATAPI CD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,aea2090adfde214e8b3a5e471856a354)
+Boot0017* USB HDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,33e821aaaf33bc4789bd419f88c50803)
+Boot0018* USB FDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,6ff015a28830b543a8b8641009461e49)
+Boot0019* USB CD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,86701296aa5a7848b66cd49dd3ba6a55)
+
+chroot /mnt/boot-sav/nvme0n1p5 uname -r
+5.4.0-42-generic
+
+chroot /mnt/boot-sav/nvme0n1p5 grub-install --efi-directory=/boot/efi --target=x86_64-efi
+Installing for x86_64-efi platform.
+grub-install: warning: EFI variables cannot be set on this system.
+grub-install: warning: You will have to complete the GRUB setup manually.
+Installation finished. No error reported.
+df /dev/nvme0n1p1
+mv /mnt/boot-sav/nvme0n1p5/boot/efi/EFI/Boot/bootx64.efi /mnt/boot-sav/nvme0n1p5/boot/efi/EFI/Boot/bkpbootx64.efi
+cp /mnt/boot-sav/nvme0n1p5/boot/efi/efi/ubuntu/grubx64.efi /mnt/boot-sav/nvme0n1p5/boot/efi/EFI/Boot/bootx64.efi
+
+chroot /mnt/boot-sav/nvme0n1p5 grub-install --efi-directory=/boot/efi --target=x86_64-efi
+Installing for x86_64-efi platform.
+grub-install: warning: EFI variables cannot be set on this system.
+grub-install: warning: You will have to complete the GRUB setup manually.
+Installation finished. No error reported.
+
+chroot /mnt/boot-sav/nvme0n1p5 efibootmgr -v after grub install
+BootCurrent: 0017
+Timeout: 0 seconds
+BootOrder: 0017,0000,0013,0014,0015,0016,0018,0019
+Boot0000* Windows Boot Manager	HD(1,GPT,80ffcdb8-7774-4451-878c-6e620adc338c,0x800,0x82000)/File(EFIMicrosoftBootbootmgfw.efi)WINDOWS.........x...B.C.D.O.B.J.E.C.T.=.{.9.d.e.a.8.6.2.c.-.5.c.d.d.-.4.e.7.0.-.a.c.c.1.-.f.3.2.b.3.4.4.d.4.7.9.5.}....................
+Boot0010  Setup	FvFile(721c8b66-426c-4e86-8e99-3457c46ab0b9)
+Boot0011  Boot Menu	FvFile(86488440-41bb-42c7-93ac-450fbf7766bf)
+Boot0012  UEFI Diagnostics	FvFile(f8397897-e203-4a62-b977-9e7e5d94d91b)
+Boot0013* NVMe: SAMSUNG MZALQ512HALU-000L2             	PciRoot(0x0)/Pci(0x2,0x4)/Pci(0x0,0x0)/NVMe(0x1,00-25-38-AB-01-D9-C2-F8)....2.LN........
+Boot0014* ATA HDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,91af625956449f41a7b91f4f892ab0f600)
+Boot0015* ATA HDD1:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,91af625956449f41a7b91f4f892ab0f601)
+Boot0016* ATAPI CD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,aea2090adfde214e8b3a5e471856a354)
+Boot0017* USB HDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,33e821aaaf33bc4789bd419f88c50803)
+Boot0018* USB FDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,6ff015a28830b543a8b8641009461e49)
+Boot0019* USB CD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,86701296aa5a7848b66cd49dd3ba6a55)
+Error: NVram is locked (Ubuntu not found in efibootmgr). Please report this message to boot.repair@gmail.com
+
+chroot /mnt/boot-sav/nvme0n1p5 update-grub
+Sourcing file `/etc/default/grub'
+Sourcing file `/etc/default/grub.d/init-select.cfg'
+Generating grub configuration file ...
+Found linux image: /boot/vmlinuz-5.15.0-56-generic
+Found initrd image: /boot/initrd.img-5.15.0-56-generic
+Found linux image: /boot/vmlinuz-5.4.0-42-generic
+Found initrd image: /boot/initrd.img-5.4.0-42-generic
+Warning: os-prober will be executed to detect other bootable partitions.
+Its output will be used to detect bootable binaries on them and create new boot entries.
+Found Windows Boot Manager on /dev/nvme0n1p1@/EFI/Microsoft/Boot/bootmgfw.efi
+This will modify the mount point of sdb1 in order to remove spaces and special characters. Do you want to continue?
+
+Unhide GRUB boot menu in nvme0n1p5/boot/grub/grub.cfg
+
+Unhide GRUB boot menu in sdb1/boot/grub/grub.cfg
+mv: failed to preserve ownership for '/media/ubuntu/UBUNTU 20_0/boot/grub/grub.cfg': Operation not permitted
+
+An error occurred during the repair.
+Error: NVram is locked (Ubuntu not found in efibootmgr). Please report this message to boot.repair@gmail.com
+
+Locked-NVram detected.
+
+
+============================ Boot Info After Repair ============================
+
+ => No boot loader is installed in the MBR of /dev/nvme0n1.
+ => Syslinux MBR (5.00 and higher) is installed in the MBR of /dev/sdb.
+
+nvme0n1p1: _____________________________________________________________________
+
+    File system:       vfat
+    Boot sector type:  Windows 8/10/11/2012: FAT32
+    Boot sector info:  No errors found in the Boot Parameter Block.
+    Operating System:  
+    Boot files:        /efi/Boot/bkpbootx64.efi /efi/Boot/bootx64.efi 
+                       /efi/Boot/fbx64.efi /efi/Boot/grubx64.efi 
+                       /efi/Boot/mmx64.efi /efi/ubuntu/grubx64.efi 
+                       /efi/ubuntu/mmx64.efi /efi/ubuntu/shimx64.efi 
+                       /efi/ubuntu/grub.cfg /efi/Microsoft/Boot/bootmgfw.efi 
+                       /efi/Microsoft/Boot/bootmgr.efi
+
+nvme0n1p2: _____________________________________________________________________
+
+    File system:       
+    Boot sector type:  -
+    Boot sector info: 
+
+nvme0n1p3: _____________________________________________________________________
+
+    File system:       ntfs
+    Boot sector type:  Windows 8/10/11/2012: NTFS
+    Boot sector info:  No errors found in the Boot Parameter Block.
+    Operating System:  Windows 10 or 11
+    Boot files:        /bootmgr /Windows/System32/winload.exe
+
+nvme0n1p4: _____________________________________________________________________
+
+    File system:       ntfs
+    Boot sector type:  Windows 8/10/11/2012: NTFS
+    Boot sector info:  No errors found in the Boot Parameter Block.
+    Operating System:  
+    Boot files:        
+
+nvme0n1p5: _____________________________________________________________________
+
+    File system:       ext4
+    Boot sector type:  -
+    Boot sector info: 
+    Operating System:  Ubuntu 22.04.1 LTS
+    Boot files:        /boot/grub/grub.cfg /etc/fstab /etc/default/grub
+
+sdb1: __________________________________________________________________________
+
+    File system:       vfat
+    Boot sector type:  SYSLINUX 6.04
+    Boot sector info:  Syslinux looks at sector 32784 of /dev/sdb1 for its 
+                       second stage. The integrity check of Syslinux failed. 
+                       No errors found in the Boot Parameter Block.
+    Operating System:  
+    Boot files:        /boot/grub/grub.cfg /syslinux.cfg 
+                       /efi/BOOT/grubx64.efi /efi/BOOT/mmx64.efi /ldlinux.sys
+
+
+================================ 2 OS detected =================================
+
+OS#1:   Ubuntu 22.04.1 LTS on nvme0n1p5
+OS#2:   Windows 10 or 11 on nvme0n1p3
+
+================================ Host/Hardware =================================
+
+CPU architecture: 64-bit
+Video: Renoir from Advanced Micro Devices, Inc. [AMD/ATI]
+Live-session OS is Ubuntu 64-bit (Ubuntu 20.04.1 LTS, focal, x86_64)
+
+===================================== UEFI =====================================
+
+BIOS/UEFI firmware: E7CN45WW from LENOVO
+The firmware is EFI-compatible, and is set in EFI-mode for this live-session.
+SecureBoot disabled (confirmed by mokutil).
+BootCurrent: 0017
+Timeout: 0 seconds
+BootOrder: 0017,0000,0013,0014,0015,0016,0018,0019
+Boot0000* Windows Boot Manager	HD(1,GPT,80ffcdb8-7774-4451-878c-6e620adc338c,0x800,0x82000)/File(\EFI\Microsoft\Boot\bootmgfw.efi)WINDOWS.........x...B.C.D.O.B.J.E.C.T.=.{.9.d.e.a.8.6.2.c.-.5.c.d.d.-.4.e.7.0.-.a.c.c.1.-.f.3.2.b.3.4.4.d.4.7.9.5.}....................
+Boot0010  Setup	FvFile(721c8b66-426c-4e86-8e99-3457c46ab0b9)
+Boot0011  Boot Menu	FvFile(86488440-41bb-42c7-93ac-450fbf7766bf)
+Boot0012  UEFI Diagnostics	FvFile(f8397897-e203-4a62-b977-9e7e5d94d91b)
+Boot0013* NVMe: SAMSUNG MZALQ512HALU-000L2             	PciRoot(0x0)/Pci(0x2,0x4)/Pci(0x0,0x0)/NVMe(0x1,00-25-38-AB-01-D9-C2-F8)....2.LN........
+Boot0014* ATA HDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,91af625956449f41a7b91f4f892ab0f600)
+Boot0015* ATA HDD1:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,91af625956449f41a7b91f4f892ab0f601)
+Boot0016* ATAPI CD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,aea2090adfde214e8b3a5e471856a354)
+Boot0017* USB HDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,33e821aaaf33bc4789bd419f88c50803)
+Boot0018* USB FDD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,6ff015a28830b543a8b8641009461e49)
+Boot0019* USB CD:	VenMsg(bc7838d2-0f82-4d60-8316-c068ee79d25b,86701296aa5a7848b66cd49dd3ba6a55)
+
+3795ef72a4ed0369ca44e711527904bf   nvme0n1p1/Boot/bkpbootx64.efi
+3795ef72a4ed0369ca44e711527904bf   nvme0n1p1/Boot/bootx64.efi
+c152ec201c37b6e97bbc2207e49d1271   nvme0n1p1/Boot/fbx64.efi
+3795ef72a4ed0369ca44e711527904bf   nvme0n1p1/Boot/grubx64.efi
+fdafb5eece6caeccb788c946a28e6872   nvme0n1p1/Boot/mmx64.efi
+3795ef72a4ed0369ca44e711527904bf   nvme0n1p1/ubuntu/grubx64.efi
+fdafb5eece6caeccb788c946a28e6872   nvme0n1p1/ubuntu/mmx64.efi
+728124f6ec8e22fbdbe7034812c81b95   nvme0n1p1/ubuntu/shimx64.efi
+6009fc3e20cfbafc02741eefc87dd1c4   nvme0n1p1/Microsoft/Boot/bootmgfw.efi
+3b0135f29091e8e3ed5eb453ef168912   nvme0n1p1/Microsoft/Boot/bootmgr.efi
+   sdb1/BOOT/grubx64.efi
+   sdb1/BOOT/mmx64.efi
+   sdb1/BOOT/BOOTx64.efi
+
+============================= Drive/Partition Info =============================
+
+Disks info: ____________________________________________________________________
+
+nvme0n1	: is-GPT,	no-BIOSboot,	has---ESP, 	not-usb,	not-mmc, has-os,	has-win,	2048 sectors * 512 bytes
+sdb	: notGPT,	no-BIOSboot,	has---ESP, 	liveusb,	not-mmc, no-os,	no-wind,	2048 sectors * 512 bytes
+
+Partitions info (1/3): _________________________________________________________
+
+nvme0n1p1	: no-os,	64, nopakmgr,	no-docgrub,	nogrub,	nogrubinstall,	no-grubenv,	noupdategrub,	not-far
+nvme0n1p3	: is-os,	64, nopakmgr,	no-docgrub,	nogrub,	nogrubinstall,	no-grubenv,	noupdategrub,	farbios
+nvme0n1p4	: no-os,	64, nopakmgr,	no-docgrub,	nogrub,	nogrubinstall,	no-grubenv,	noupdategrub,	farbios
+nvme0n1p5	: is-os,	64, apt-get,	signed grub-efi ,	grub2,	grub-install,	grubenv-ok,	update-grub,	farbios
+sdb1	: no-os,	64, nopakmgr,	no-docgrub,	nogrub,	nogrubinstall,	no-grubenv,	noupdategrub,	not-far
+
+Partitions info (2/3): _________________________________________________________
+
+nvme0n1p1	: is---ESP,	part-has-no-fstab,	no-nt,	no-winload,	no-recov-nor-hid,	no-bmgr,	notwinboot
+nvme0n1p3	: isnotESP,	part-has-no-fstab,	no-nt,	haswinload,	no-recov-nor-hid,	bootmgr,	notwinboot
+nvme0n1p4	: isnotESP,	part-has-no-fstab,	no-nt,	no-winload,	recovery-or-hidden,	no-bmgr,	notwinboot
+nvme0n1p5	: isnotESP,	fstab-has-goodEFI,	no-nt,	no-winload,	no-recov-nor-hid,	no-bmgr,	notwinboot
+sdb1	: is---ESP,	part-has-no-fstab,	no-nt,	no-winload,	no-recov-nor-hid,	no-bmgr,	notwinboot
+
+Partitions info (3/3): _________________________________________________________
+
+nvme0n1p1	: not--sepboot,	no-kernel,	part-has-no-fstab,	not-sep-usr,	no---usr,	part-has-no-fstab,	no--grub.d,	nvme0n1
+nvme0n1p3	: not--sepboot,	no---boot,	part-has-no-fstab,	not-sep-usr,	no---usr,	part-has-no-fstab,	no--grub.d,	nvme0n1
+nvme0n1p4	: not--sepboot,	no---boot,	part-has-no-fstab,	not-sep-usr,	no---usr,	part-has-no-fstab,	no--grub.d,	nvme0n1
+nvme0n1p5	: not--sepboot,	with-boot,	fstab-without-boot,	not-sep-usr,	with--usr,	fstab-without-usr,	std-grub.d,	nvme0n1
+sdb1	: not--sepboot,	no-kernel,	part-has-no-fstab,	not-sep-usr,	no---usr,	part-has-no-fstab,	no--grub.d,	sdb
+
+fdisk -l (filtered): ___________________________________________________________
+
+Disk nvme0n1: 476.96 GiB, 512110190592 bytes, 1000215216 sectors
+Disk identifier: CC8ECE85-61E6-4ECD-84F2-18E1B9472681
+              Start       End   Sectors   Size Type
+nvme0n1p1      2048    534527    532480   260M EFI System
+nvme0n1p2    534528    567295     32768    16M Microsoft reserved
+nvme0n1p3    567296 529759720 529192425 252.3G Microsoft basic data
+nvme0n1p4 998166528 999243775   1077248   526M Windows recovery environment
+nvme0n1p5 529760256 998166527 468406272 223.4G Linux filesystem
+Partition table entries are not in disk order.
+Disk sdb: 14.66 GiB, 15728640000 bytes, 30720000 sectors
+Disk identifier: 0x11dfbaa5
+      Boot Start      End  Sectors  Size Id Type
+sdb1  *     2048 30719999 30717952 14.7G  c W95 FAT32 (LBA)
+
+parted -lm (filtered): _________________________________________________________
+
+sdb:15.7GB:scsi:512:512:msdos:VendorCo ProductCode:;
+1:1049kB:15.7GB:15.7GB:fat32::boot, lba;
+nvme0n1:512GB:nvme:512:512:gpt:SAMSUNG MZALQ512HALU-000L2:;
+1:1049kB:274MB:273MB:fat32:EFI system partition:boot, esp;
+2:274MB:290MB:16.8MB::Microsoft reserved partition:msftres;
+3:290MB:271GB:271GB:ntfs:Basic data partition:msftdata;
+5:271GB:511GB:240GB:ext4::;
+4:511GB:512GB:552MB:ntfs::hidden, diag;
+
+Free space >10MiB: ______________________________________________________________
+
+nvme0n1: 487912MiB:488386MiB:474MiB
+
+blkid (filtered): ______________________________________________________________
+
+NAME        FSTYPE   UUID                                 PARTUUID                             LABEL       PARTLABEL
+sdb                                                                                                        
+└─sdb1      vfat     2623-0C6C                            11dfbaa5-01                          UBUNTU 20_0 
+nvme0n1                                                                                                    
+├─nvme0n1p1 vfat     6C55-E113                            80ffcdb8-7774-4451-878c-6e620adc338c SYSTEM_DRV  EFI system partition
+├─nvme0n1p2                                               6c5e4fd1-f7c4-408d-a6de-6c8d2207ba17             Microsoft reserved partition
+├─nvme0n1p3 ntfs     02EE5682EE566DC3                     c5edcc80-b270-4c67-876c-901fba33dec4 Windows-SSD Basic data partition
+├─nvme0n1p4 ntfs     D67057F57057DAB7                     4b8b0d27-17f7-4ead-ba64-35627825b228 WINRE_DRV   Basic data partition
+└─nvme0n1p5 ext4     1d0d811e-4469-4092-9801-781687ba1267 a45ada5b-4b63-4ce1-8d77-6d9ef7922fd6             
+
+Mount points (filtered): _______________________________________________________
+
+                Avail            Use% Mounted on
+/dev/nvme0n1p1 218.3M             15% /mnt/boot-sav/nvme0n1p1
+/dev/nvme0n1p3 426.2G 27886633650922% /mnt/boot-sav/nvme0n1p3
+/dev/nvme0n1p4  48.8M             91% /mnt/boot-sav/nvme0n1p4
+/dev/nvme0n1p5 145.8G             28% /mnt/boot-sav/nvme0n1p5
+/dev/sda1         12G             18% /cdrom
+/dev/sdb1         12G             18% /media/ubuntu/UBUNTU 20_0
+
+Mount options (filtered): ______________________________________________________
+
+
+=================== nvme0n1p1/efi/ubuntu/grub.cfg (filtered) ===================
+
+search.fs_uuid 1d0d811e-4469-4092-9801-781687ba1267 root 
+set prefix=($root)'/boot/grub'
+configfile $prefix/grub.cfg
+
+=================== nvme0n1p5/boot/grub/grub.cfg (filtered) ====================
+
+Ubuntu   1d0d811e-4469-4092-9801-781687ba1267
+Ubuntu, with Linux 5.15.0-56-generic   1d0d811e-4469-4092-9801-781687ba1267
+Ubuntu, with Linux 5.4.0-42-generic   1d0d811e-4469-4092-9801-781687ba1267
+Windows Boot Manager (on nvme0n1p1)   osprober-efi-6C55-E113
+### END /etc/grub.d/30_os-prober ###
+### END /etc/grub.d/30_uefi-firmware ###
+
+======================== nvme0n1p5/etc/fstab (filtered) ========================
+
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/nvme0n1p5 during installation
+UUID=1d0d811e-4469-4092-9801-781687ba1267 /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/nvme0n1p1 during installation
+UUID=6C55-E113  /boot/efi       vfat    umask=0077      0       1
+/swapfile                                 none            swap    sw              0       0
+
+==================== nvme0n1p5/etc/default/grub (filtered) =====================
+
+GRUB_DEFAULT=0
+GRUB_TIMEOUT_STYLE=menu
+GRUB_TIMEOUT=10
+GRUB_DISTRIBUTOR=`lsb_release -i -s 2> /dev/null || echo Debian`
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX=""
+GRUB_DISABLE_OS_PROBER=false
+
+================= nvme0n1p5: Location of files loaded by Grub ==================
+
+           GiB - GB             File                                 Fragment(s)
+ 252.609378815 = 271.237255168  boot/grub/grub.cfg                             1
+ 259.221694946 = 278.337175552  boot/vmlinuz                                   1
+ 259.221694946 = 278.337175552  boot/vmlinuz-5.15.0-56-generic                 1
+ 257.299922943 = 276.273688576  boot/vmlinuz-5.4.0-42-generic                  1
+ 257.299922943 = 276.273688576  boot/vmlinuz.old                               1
+ 295.785682678 = 317.597458432  boot/initrd.img                                2
+ 295.785682678 = 317.597458432  boot/initrd.img-5.15.0-56-generic              2
+ 449.035182953 = 482.147856384  boot/initrd.img-5.4.0-42-generic               1
+ 449.035182953 = 482.147856384  boot/initrd.img.old                            1
+
+=================== nvme0n1p5: ls -l /etc/grub.d/ (filtered) ===================
+
+-rwxr-xr-x 1 root root 18683 Apr 15  2022 10_linux
+-rwxr-xr-x 1 root root 43031 Apr 15  2022 10_linux_zfs
+-rwxr-xr-x 1 root root 14180 Apr 15  2022 20_linux_xen
+-rwxr-xr-x 1 root root 13369 Apr 15  2022 30_os-prober
+-rwxr-xr-x 1 root root  1372 Apr 15  2022 30_uefi-firmware
+-rwxr-xr-x 1 root root   214 Apr 15  2022 40_custom
+-rwxr-xr-x 1 root root   215 Apr 15  2022 41_custom
+
+====================== sdb1/boot/grub/grub.cfg (filtered) ======================
+
+
+========================= sdb1/syslinux.cfg (filtered) =========================
+
+
+==================== sdb1: Location of files loaded by Grub ====================
+
+           GiB - GB             File                                 Fragment(s)
+            ?? = ??             boot/grub/grub.cfg                             1
+
+================== sdb1: Location of files loaded by Syslinux ==================
+
+           GiB - GB             File                                 Fragment(s)
+            ?? = ??             syslinux.cfg                                   1
+            ?? = ??             ldlinux.sys                                    1
